@@ -1,0 +1,11 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: lightcoral;
+    align-items: center;
+}
+
+.grid-container {
+    height: 480px;
+    width: 480px;
+}
