@@ -19,3 +19,9 @@ function makeGrid(gridSize) {
 
 makeGrid(gridSize);
 
+const sketchBoxes = document.querySelectorAll(".grid-box");
+for (let i = 0; i < sketchBoxes.length; i++) {
+    sketchBoxes[i].addEventListener("mouseover", () => {
+        sketchBoxes[i].style.background = "black";
+    })
+};
