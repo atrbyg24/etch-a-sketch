@@ -8,7 +8,7 @@ function makeGrid(gridSize) {
         const gridBox = document.createElement("div");
         gridBox.setAttribute("class","grid-box");
         gridBox.setAttribute("style",
-            "background-color: white; padding: 0; margin: 0; box-sizing: border-box;");
+            "background-color: white; padding: 0; margin: 0; opacity: 0; box-sizing: border-box;");
         let boxSize = 480/gridSize;
         boxSize = boxSize + "px";
         gridBox.style.height = boxSize;
@@ -21,7 +21,7 @@ function colorBlack() {
     const sketchBoxes = document.querySelectorAll(".grid-box");
     for (let i = 0; i < sketchBoxes.length; i++) {
         sketchBoxes[i].addEventListener("mouseover", () => {
-            let currentOpacity = parseFloat(sketchBoxes[i].style.opacity) || 0;
+            let currentOpacity = parseFloat(sketchBoxes[i].style.opacity);
             if (currentOpacity < 1) {
                 sketchBoxes[i].style.opacity = parseFloat(sketchBoxes[i].style.opacity) + 0.1;
             }
@@ -79,8 +79,9 @@ let clearBtn = document.querySelector(".clear-button");
 
 
 sizeBtn.addEventListener("click", () => {
+    const regex = new RegExp(/[^0-9]/, 'g');
     gridSize = prompt("Please enter a grid size (integer between 16-100):")
-    if ((gridSize == null) || !isNaN(gridSize) || gridSize < 16 || gridSize > 100) {
+    while ((gridSize == null) || gridSize.match(regex) || gridSize < 16 || gridSize > 100) {
         gridSize = prompt("Invalid choice. Please enter a grid size (integer between 16-100):")
     }
     const gridContainer = document.querySelector(".grid-container");
@@ -91,7 +92,6 @@ sizeBtn.addEventListener("click", () => {
     } else {
         colorRainbow();
     }
-
 })
 
 blackBtn.addEventListener("click", () => {
