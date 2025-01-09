@@ -21,9 +21,6 @@ function makeGrid(gridSize) {
 function colorBlack() {
     const sketchBoxes = document.querySelectorAll(".grid-box");
     for (let i = 0; i < sketchBoxes.length; i++) {
-        sketchBoxes[i].style.opacity = 0;
-    }
-    for (let i = 0; i < sketchBoxes.length; i++) {
         sketchBoxes[i].addEventListener("mouseover", () => {
             let currentOpacity = Number(sketchBoxes[i].style.opacity);
             if (currentOpacity < 1) {
@@ -41,7 +38,6 @@ function colorRainbow() {
     let randomB = 0;
     for (let i = 0; i < sketchBoxes.length; i++) {
         sketchBoxes[i].addEventListener("mouseover", () => {
-            sketchBoxes[i].style.opacity = 1;
             randomR = Math.floor(Math.random() * 256);
             randomG = Math.floor(Math.random() * 256);
             randomB = Math.floor(Math.random() * 256);
@@ -53,6 +49,7 @@ function colorRainbow() {
 function clearGrid() {
     const sketchBoxes = document.querySelectorAll(".grid-box");
     for (let i = 0; i < sketchBoxes.length; i++) {
+        sketchBoxes[i].style.opacity = 0;
         sketchBoxes[i].style.background = "white";
     }
 }
@@ -67,6 +64,24 @@ function rainbowButtonToggle() {
     rainbowBtn.id = (rainbowBtn.id == "rainbow-button-default") ? "rainbow-button-clicked" : "rainbow-button-default";
 }
 
-
 makeGrid(gridSize);
-colorRainbow();
+colorBlack();
+
+let sizeBtn = document.querySelector(".size-button");
+
+let blackBtn = document.querySelector(".black-button");
+blackBtn.addEventListener("click", () => {
+    blackButtonToggle();
+    colorBlack();
+});
+
+let rainbowBtn = document.querySelector(".rainbow-button");
+rainbowBtn.addEventListener("click", () => {
+    rainbowButtonToggle();
+    colorRainbow();
+})
+
+let clearBtn = document.querySelector(".clear-button");
+clearBtn.addEventListener("click", () => {
+    clearGrid();
+})
