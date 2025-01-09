@@ -1,4 +1,5 @@
 let gridSize = 16;
+let boardState = 0;
 
 function makeGrid(gridSize) {
     const gridContainer = document.querySelector(".grid-container");
@@ -8,7 +9,7 @@ function makeGrid(gridSize) {
         const gridBox = document.createElement("div");
         gridBox.setAttribute("class","grid-box");
         gridBox.setAttribute("style",
-            "background-color: white; border: 1px solid black; padding: 0; margin: 0; box-sizing: border-box;");
+            "background-color: white; padding: 0; margin: 0; box-sizing: border-box;");
         let boxSize = 480/gridSize;
         boxSize = boxSize + "px";
         gridBox.style.height = boxSize;
@@ -17,11 +18,44 @@ function makeGrid(gridSize) {
     }
 }
 
-makeGrid(gridSize);
+function colorBlack() {
+    const sketchBoxes = document.querySelectorAll(".grid-box");
+    for (let i = 0; i < sketchBoxes.length; i++) {
+        sketchBoxes[i].style.opacity = 0;
+    }
+    for (let i = 0; i < sketchBoxes.length; i++) {
+        sketchBoxes[i].addEventListener("mouseover", () => {
+            let currentOpacity = Number(sketchBoxes[i].style.opacity);
+            if (currentOpacity < 1) {
+                sketchBoxes[i].style.opacity = (parseFloat(sketchBoxes[i].style.opacity) || 0) + 0.1;
+            }
+            sketchBoxes[i].style.background = "black";
+        })
+    };
+}
 
-const sketchBoxes = document.querySelectorAll(".grid-box");
-for (let i = 0; i < sketchBoxes.length; i++) {
-    sketchBoxes[i].addEventListener("mouseover", () => {
-        sketchBoxes[i].style.background = "black";
-    })
-};
+function colorRainbow() {
+    const sketchBoxes = document.querySelectorAll(".grid-box");
+    let randomR = 0;
+    let randomG = 0;
+    let randomB = 0;
+    for (let i = 0; i < sketchBoxes.length; i++) {
+        sketchBoxes[i].addEventListener("mouseover", () => {
+            sketchBoxes[i].style.opacity = 1;
+            randomR = Math.floor(Math.random() * 256);
+            randomG = Math.floor(Math.random() * 256);
+            randomB = Math.floor(Math.random() * 256);
+            sketchBoxes[i].style.background = `rgb(${randomR},${randomG},${randomB})`;
+        })
+    };
+}
+
+function clearGrid() {
+    const sketchBoxes = document.querySelectorAll(".grid-box");
+    for (let i = 0; i < sketchBoxes.length; i++) {
+        sketchBoxes[i].style.background = "white";
+    }
+}
+
+makeGrid(gridSize);
+colorRainbow();

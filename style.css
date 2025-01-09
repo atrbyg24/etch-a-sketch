@@ -13,6 +13,7 @@ h1 {
 .grid-container {
     height: 480px;
     width: 480px;
+    border: 4px solid beige;
 }
 
 .sketch-container {
