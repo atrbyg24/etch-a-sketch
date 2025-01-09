@@ -1,20 +1,21 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: lightcoral;
+    background-color: lightgoldenrodyellow;
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
 }
 
 h1 {
     font-size: 48px;
-    color: navy;
+    color: lightcoral;
 }
 
 .grid-container {
     height: 480px;
     width: 480px;
-    border: 4px solid beige;
+    border: 20px solid lightcoral;
+    border-radius: 16px;
     background-color: white;
 }
 
