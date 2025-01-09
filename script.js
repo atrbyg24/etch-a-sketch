@@ -17,16 +17,26 @@ function makeGrid(gridSize) {
     }
 }
 
+function blackBox(event) {
+    let currentOpacity = parseFloat(event.target.style.opacity);
+    if (currentOpacity < 1) {
+        event.target.style.opacity = parseFloat(event.target.style.opacity) + 0.1;
+    }
+    event.target.style.background = "black";
+};
+
+function rainbowBox(event) {
+    randomR = Math.floor(Math.random() * 256);
+    randomG = Math.floor(Math.random() * 256);
+    randomB = Math.floor(Math.random() * 256);
+    event.target.style.background = `rgb(${randomR},${randomG},${randomB})`;
+};
+
 function colorBlack() {
     const sketchBoxes = document.querySelectorAll(".grid-box");
     for (let i = 0; i < sketchBoxes.length; i++) {
-        sketchBoxes[i].addEventListener("mouseover", () => {
-            let currentOpacity = parseFloat(sketchBoxes[i].style.opacity);
-            if (currentOpacity < 1) {
-                sketchBoxes[i].style.opacity = parseFloat(sketchBoxes[i].style.opacity) + 0.1;
-            }
-            sketchBoxes[i].style.background = "black";
-        })
+        sketchBoxes[i].removeEventListener("mouseover",blackBox);
+        sketchBoxes[i].addEventListener("mouseover", blackBox)
     };
 }
 
@@ -36,12 +46,8 @@ function colorRainbow() {
     let randomG = 0;
     let randomB = 0;
     for (let i = 0; i < sketchBoxes.length; i++) {
-        sketchBoxes[i].addEventListener("mouseover", () => {
-            randomR = Math.floor(Math.random() * 256);
-            randomG = Math.floor(Math.random() * 256);
-            randomB = Math.floor(Math.random() * 256);
-            sketchBoxes[i].style.background = `rgb(${randomR},${randomG},${randomB})`;
-        })
+        sketchBoxes[i].removeEventListener("mouseover",rainbowBox);
+        sketchBoxes[i].addEventListener("mouseover", rainbowBox);
     };
 }
 
