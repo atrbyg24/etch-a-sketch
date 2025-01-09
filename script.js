@@ -23,7 +23,6 @@ function colorBlack() {
         sketchBoxes[i].addEventListener("mouseover", () => {
             let currentOpacity = parseFloat(sketchBoxes[i].style.opacity) || 0;
             if (currentOpacity < 1) {
-                sketchBoxes[i].style.opacity = currentOpacity;
                 sketchBoxes[i].style.opacity = parseFloat(sketchBoxes[i].style.opacity) + 0.1;
             }
             sketchBoxes[i].style.background = "black";
@@ -74,25 +73,37 @@ makeGrid(gridSize);
 colorBlack();
 
 let sizeBtn = document.querySelector(".size-button");
+let blackBtn = document.querySelector(".black-button");
+let rainbowBtn = document.querySelector(".rainbow-button");
+let clearBtn = document.querySelector(".clear-button");
+
+
 sizeBtn.addEventListener("click", () => {
+    gridSize = prompt("Please enter a grid size (integer between 16-100):")
+    if ((gridSize == null) || !isNaN(gridSize) || gridSize < 16 || gridSize > 100) {
+        gridSize = prompt("Invalid choice. Please enter a grid size (integer between 16-100):")
+    }
     const gridContainer = document.querySelector(".grid-container");
     gridContainer.replaceChildren();
     makeGrid(gridSize);
+    if (blackBtn.id == "black-button-clicked") {
+        colorBlack();
+    } else {
+        colorRainbow();
+    }
+
 })
 
-let blackBtn = document.querySelector(".black-button");
 blackBtn.addEventListener("click", () => {
     blackButtonToggle();
     colorBlack();
 });
 
-let rainbowBtn = document.querySelector(".rainbow-button");
 rainbowBtn.addEventListener("click", () => {
     rainbowButtonToggle();
     colorRainbow();
 })
 
-let clearBtn = document.querySelector(".clear-button");
 clearBtn.addEventListener("click", () => {
     clearGrid();
 })
