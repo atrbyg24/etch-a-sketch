@@ -57,5 +57,16 @@ function clearGrid() {
     }
 }
 
+function blackButtonToggle() {
+    let blackBtn = document.querySelector(".black-button");
+    blackBtn.id = (blackBtn.id == "black-button-default") ? "black-button-clicked" : "black-button-default";
+}
+
+function rainbowButtonToggle() {
+    let rainbowBtn = document.querySelector(".rainbow-button");
+    rainbowBtn.id = (rainbowBtn.id == "rainbow-button-default") ? "rainbow-button-clicked" : "rainbow-button-default";
+}
+
+
 makeGrid(gridSize);
 colorRainbow();
