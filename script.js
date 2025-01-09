@@ -1,5 +1,4 @@
 let gridSize = 16;
-let boardState = 0;
 
 function makeGrid(gridSize) {
     const gridContainer = document.querySelector(".grid-container");
@@ -22,9 +21,10 @@ function colorBlack() {
     const sketchBoxes = document.querySelectorAll(".grid-box");
     for (let i = 0; i < sketchBoxes.length; i++) {
         sketchBoxes[i].addEventListener("mouseover", () => {
-            let currentOpacity = Number(sketchBoxes[i].style.opacity);
+            let currentOpacity = parseFloat(sketchBoxes[i].style.opacity) || 0;
             if (currentOpacity < 1) {
-                sketchBoxes[i].style.opacity = (parseFloat(sketchBoxes[i].style.opacity) || 0) + 0.1;
+                sketchBoxes[i].style.opacity = currentOpacity;
+                sketchBoxes[i].style.opacity = parseFloat(sketchBoxes[i].style.opacity) + 0.1;
             }
             sketchBoxes[i].style.background = "black";
         })
@@ -68,6 +68,11 @@ makeGrid(gridSize);
 colorBlack();
 
 let sizeBtn = document.querySelector(".size-button");
+sizeBtn.addEventListener("click", () => {
+    const gridContainer = document.querySelector(".grid-container");
+    gridContainer.replaceChildren();
+    makeGrid(gridSize);
+})
 
 let blackBtn = document.querySelector(".black-button");
 blackBtn.addEventListener("click", () => {
