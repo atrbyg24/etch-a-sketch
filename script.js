@@ -56,12 +56,18 @@ function clearGrid() {
 
 function blackButtonToggle() {
     let blackBtn = document.querySelector(".black-button");
-    blackBtn.id = (blackBtn.id == "black-button-default") ? "black-button-clicked" : "black-button-default";
+    if (blackBtn.id == "black-button-default") {
+        rainbowBtn.id = "rainbow-button-default";
+        blackBtn.id = "black-button-clicked";
+    }
 }
 
 function rainbowButtonToggle() {
     let rainbowBtn = document.querySelector(".rainbow-button");
-    rainbowBtn.id = (rainbowBtn.id == "rainbow-button-default") ? "rainbow-button-clicked" : "rainbow-button-default";
+    if (rainbowBtn.id == "rainbow-button-default") {
+        blackBtn.id = "black-button-default";
+        rainbowBtn.id = "rainbow-button-clicked";
+    }
 }
 
 makeGrid(gridSize);
