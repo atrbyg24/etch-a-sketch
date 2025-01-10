@@ -88,7 +88,7 @@ sizeBtn.addEventListener("click", () => {
     const regex = new RegExp(/[^0-9]/, 'g');
     gridSize = prompt("Please enter a grid size (integer between 16-100):")
     while ((gridSize == null) || gridSize.match(regex) || gridSize < 16 || gridSize > 100) {
-        gridSize = prompt("Invalid choice. Please enter a grid size (integer between 16-100):")
+        gridSize = prompt("Invalid choice. Please enter a grid size (integer between 16-100):","16")
     }
     const gridContainer = document.querySelector(".grid-container");
     gridContainer.replaceChildren();
