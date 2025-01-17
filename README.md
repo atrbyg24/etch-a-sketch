@@ -8,3 +8,4 @@ The squares are colored by hovoring over the square with the mouse and the color
 
 Live preview: https://atrbyg24.github.io/etch-a-sketch/
 
+![etch-a-sketch-example]([http://url/to/img.png](https://github.com/atrbyg24/etch-a-sketch/blob/main/etch-a-sketch.png))
